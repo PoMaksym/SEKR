@@ -1,9 +1,36 @@
 import datetime
 import logging
+import random
+import string
+from random import choice
+from string import ascii_lowercase
+from string import ascii_uppercase
 from time import sleep
 
 
-def wait_until_ok(timeout=5, period=0.5):
+def random_upper():
+    """Generate random string"""
+    random_string = (''.join(choice(ascii_uppercase) for i in range(12)))
+    return random_string
+
+
+def random_low():
+    """Generate random string"""
+    random_string_low = (''.join(choice(ascii_lowercase) for i in range(12)))
+    return random_string_low
+
+
+def random_num():
+    """Generate random number"""
+    return str(random.randint(111111, 999999))
+
+
+def random_str(length=5):
+    """Generate random string"""
+    return ''.join(random.choice(string.ascii_letters) for _ in range(length))
+
+
+def wait_until_ok(timeout=5, period=5):
     """Reties until OK"""
 
     log = logging.getLogger("[WaitUntilOk]")
@@ -36,3 +63,29 @@ def log_decorator(original_function):
         return result
 
     return wrapper
+
+
+class User:
+    def __init__(self, username="", email="", password=""):
+        self.username = username
+        self.email = email
+        self.password = password
+
+    def fill_data(self, username="", email="", password=""):
+        """Fill fields with sample data"""
+        user = random_str()
+        self.username = f"{user}{random_num()}" if not username else username
+        self.email = f"{user}{random_num()}@gmail.com" if not email else email
+        self.password = f"{random_str(6)}{random_num()}" if not password else password
+
+    def sign_in_user(self):
+        """Sign in with valid data"""
+        self.username = 'usermax'
+        self.password = 'usermaxusermax'
+
+    def subscribe_value(self, email="", name="", surname=""):
+        """Fill fields with sample data"""
+        user = random_str()
+        self.email = f"{user}{random_num()}@gmail.com" if not email else email
+        self.name = f"{user}{random_num()}" if not name else name
+        self.surname = f"{random_str(6)}" if not surname else surname
