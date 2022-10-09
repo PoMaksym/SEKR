@@ -30,7 +30,7 @@ def random_str(length=5):
     return ''.join(random.choice(string.ascii_letters) for _ in range(length))
 
 
-def wait_until_ok(timeout=5, period=5):
+def wait_until_ok(timeout=5, period=0.5):
     """Reties until OK"""
 
     log = logging.getLogger("[WaitUntilOk]")
@@ -86,6 +86,11 @@ class User:
     def subscribe_value(self, email="", name="", surname=""):
         """Fill fields with sample data"""
         user = random_str()
-        self.email = f"{user}{random_num()}@gmail.com" if not email else email
-        self.name = f"{user}{random_num()}" if not name else name
+        self.email = f"{user}{random_str()}@gmail.com" if not email else email
+        self.name = f"{user}{random_str()}" if not name else name
         self.surname = f"{random_str(6)}" if not surname else surname
+
+    def sign_up_value(self, email="", password=""):
+        user = random_str()
+        self.email = f"{user}{random_str()}@gmail.com" if not email else email
+        self.password = f"{user}{random_num()}" if not password else password
