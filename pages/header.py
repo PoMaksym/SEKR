@@ -11,4 +11,5 @@ class Header(BasePage):
 
     def navigate_to_create_acc(self):
         self.click(self.constants.CREATE_ACC_HOMEPAGE_XPATH)
-        return Header(self.driver)
+        from pages.start_page import StartPage
+        return StartPage(self.driver)

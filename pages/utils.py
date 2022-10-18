@@ -30,7 +30,7 @@ def random_str(length=5):
     return ''.join(random.choice(string.ascii_letters) for _ in range(length))
 
 
-def wait_until_ok(timeout=5, period=0.5):
+def wait_until_ok(timeout=5, period=1):
     """Reties until OK"""
 
     log = logging.getLogger("[WaitUntilOk]")
@@ -66,10 +66,13 @@ def log_decorator(original_function):
 
 
 class User:
-    def __init__(self, username="", email="", password=""):
+    def __init__(self, username="", email="", password="", message='', name="", subject=""):
         self.username = username
         self.email = email
         self.password = password
+        self.name = name
+        self.message = message
+        self.subject = subject
 
     def fill_data(self, username="", email="", password=""):
         """Fill fields with sample data"""
@@ -94,3 +97,10 @@ class User:
         user = random_str()
         self.email = f"{user}{random_str()}@gmail.com" if not email else email
         self.password = f"{user}{random_num()}" if not password else password
+
+    def contact_us_value(self, name="", email="", subject="", message=""):
+        user = random_str()
+        self.name = f"{user}{random_str()}" if not name else name
+        self.email = f"{user}{random_str()}@gmail.com" if not email else email
+        self.subject = f"{user}{random_str()}" if not subject else subject
+        self.message = f"{user}{random_str()}" if not message else message

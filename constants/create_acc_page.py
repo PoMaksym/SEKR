@@ -18,4 +18,11 @@ class CreateAccountConsts:
     SIGN_UP_WITH_GOOGLE_XPATH = './/span[contains(text(), "Sign up with Google")]'
     VERIFY_WITH_GOOGLE_XPATH = './/p[contains(text(), "Congratulations! You have successfully registered!")]'
     VERIFY_WITH_GOOGLE_TEXT = "Congratulations! You have successfully registered!"
-    SIGIN_VIA_GOOGLE_XPATH = './/button[@type="submit"]'
+    SIGNIN_VIA_GOOGLE_XPATH = './/button[contains(text(), "Sign in with Google")]'
+    GOOGLE_INPUT_EMAIL_XPATH = './/input[@id="identifierId"]'
+    GOOGLE_INPUT_PASSWORD_XPATH = './/input[@name="password"]'
+    CLICK_BUTTON_GOOGLE = './/span[contains(text(), "Далее")]'
+    PASSWORD_LESS_SYMBOL_XPATH = './/p[contains(text(), "At least 8 characters")]'
+    PASSWORD_LESS_TEXT = "At least 8 characters"
+    EMPTY_EMAIL_SIGNUP_XPATH = './/p[contains(text(), "Please enter your email")]'
+    EMPTY_EMAIL_SIGNUP_TEXT = 'Please enter your email'

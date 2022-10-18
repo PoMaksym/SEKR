@@ -21,3 +21,5 @@ class StartPageConsts:
     OPTION_MX_TEXT = 'MX +52'
     SIGN_UP_EMAIL_USED_XPATH = './/p[contains(text(), "The email address is already in use by another account.")]'
     SIGN_UP_EMAIL_USED_TEXT = 'The email address is already in use by another account.'
+    SEND_MESSAGE_XPATH = './/button[@id="send"]'
+    CONTACT_HOMEPAGE_HEADER_XPATH = './/a[@class="AppButton_linkBtn__rmRkI HeaderNav_linkBtn__rZZ6c"][@href="/contact-us"]'

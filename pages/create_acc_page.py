@@ -1,8 +1,6 @@
-from time import sleep
-
 from constants.create_acc_page import CreateAccountConsts
 from pages.base_page import BasePage
-from pages.utils import wait_until_ok
+from pages.utils import wait_until_ok, log_decorator
 
 
 class CreateAccPage(BasePage):
@@ -11,9 +9,11 @@ class CreateAccPage(BasePage):
         super().__init__(driver)
         self.constants = CreateAccountConsts()
 
+    @log_decorator
     def verify_open_create_page(self):
         """Verify create account page opened"""
         assert self.get_element_text(self.constants.VERIFY_CREATE_ACC_XPATH)
+
 
     @wait_until_ok(period=1)
     def sign_up_with_email(self, user):
@@ -36,8 +36,9 @@ class CreateAccPage(BasePage):
         assert self.get_element_text(self.constants.SUCCESSFUL_SIGN_UP_XPATH) == self.constants.VERIFY_SUCCESSFUL_TEXT, \
             f"Actual: {self.get_element_text(xpath=self.constants.SUCCESSFUL_SIGN_UP_XPATH)}"
 
-    @wait_until_ok(period=1)
+    @log_decorator
     def verify_used_email(self, user):
+        """Verify used email"""
         self.click(xpath=self.constants.SIGN_UP_WITH_EMAIL_XPATH)
         # Fill fields
         self.fill_field(xpath=self.constants.SIGN_UP_EMAIL_PLACEHOLDER, value=user.email)
@@ -48,10 +49,29 @@ class CreateAccPage(BasePage):
             self.constants.SIGN_UP_EMAIL_USED_XPATH) == self.constants.SIGN_UP_EMAIL_USED_TEXT, \
             f"Actual: {self.get_element_text(xpath=self.constants.SIGN_UP_EMAIL_USED_XPATH)}"
 
+    @log_decorator
+    def verify_invalid_password(self, user):
+        """Verify invalid password"""
+        self.click(xpath=self.constants.SIGN_UP_WITH_EMAIL_XPATH)
+        # Fill fields
+        self.fill_field(xpath=self.constants.SIGN_UP_EMAIL_PLACEHOLDER, value=user.email)
+        self.fill_field(xpath=self.constants.SIGN_UP_PASSWORD_PLACEHOLDER, value=user.password)
+        # Click button
+        self.click(xpath=self.constants.CREATE_ACC_BUTTON_XPATH)
+        assert self.get_element_text(
+            self.constants.PASSWORD_LESS_SYMBOL_XPATH) == self.constants.PASSWORD_LESS_TEXT, \
+            f"Actual: {self.get_element_text(xpath=self.constants.PASSWORD_LESS_SYMBOL_XPATH)}"
+
+    @log_decorator
     # @wait_until_ok(period=1)
-    def sign_up_goo(self):
-        self.click(xpath=self.constants.SIGN_UP_WITH_GOOGLE_XPATH)
-        self.click(xpath=self.constants.SIGIN_VIA_GOOGLE_XPATH)
-        sleep(10)
-        assert self.get_element_text(self.constants.VERIFY_WITH_GOOGLE_XPATH) == self.constants.VERIFY_WITH_GOOGLE_TEXT, \
-            f"Actual: {self.get_element_text(xpath=self.constants.VERIFY_WITH_GOOGLE_XPATH)}"
+    def verify_empty_email_field(self, user):
+        """Verify empty email field"""
+        self.click(xpath=self.constants.SIGN_UP_WITH_EMAIL_XPATH)
+        # Fill fields
+        self.fill_field(xpath=self.constants.SIGN_UP_EMAIL_PLACEHOLDER, value=user.email)
+        self.fill_field(xpath=self.constants.SIGN_UP_PASSWORD_PLACEHOLDER, value=user.password)
+        # Click button
+        self.click(xpath=self.constants.CREATE_ACC_BUTTON_XPATH)
+        assert self.get_element_text(
+            self.constants.EMPTY_EMAIL_SIGNUP_XPATH) == self.constants.EMPTY_EMAIL_SIGNUP_TEXT, \
+            f"Actual: {self.get_element_text(xpath=self.constants.EMPTY_EMAIL_SIGNUP_XPATH)}"

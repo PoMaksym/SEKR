@@ -1,5 +1,3 @@
-from time import sleep
-
 import pytest
 from selenium import webdriver
 
@@ -14,8 +12,7 @@ def start_page():
     driver = webdriver.Chrome(DRIVER_PATH)
     driver.get(BASE_URL)
     driver.maximize_window()
-    driver.implicitly_wait(1)
-    sleep(5)
+    driver.implicitly_wait(20)
     # Steps
     yield StartPage(driver)
     # Post-conditions
@@ -27,3 +24,17 @@ def sign_up_value():
     user = User()
     user.sign_up_value()
     return user
+
+
+@pytest.fixture(scope="function")
+def subscribe_fix():
+    user = User()
+    user.subscribe_value()
+    return user
+
+
+@pytest.fixture()
+def contact_us():
+    form = User()
+    form.contact_us_value()
+    return form
