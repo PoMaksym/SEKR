@@ -7,6 +7,9 @@ class Header(BasePage):
     def __init__(self, driver):
         super().__init__(driver)
         self.constants = HeaderConsts()
+        self.header = Header(self.driver)
 
     def navigate_to_create_acc(self):
         self.click(self.constants.CREATE_ACC_HOMEPAGE_XPATH)
+        from pages.start_page import StartPage
+        return StartPage(self.driver)
