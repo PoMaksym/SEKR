@@ -21,9 +21,12 @@ class TestCreateAcc:
             - Open create an account page
             - sign up with email
             - Fill email field with used email"""
+        # Open create account page
+        create_acc_page = start_page.navigate_to_create_acc()
+        # Fill email field with used email
         user = sign_up_value
         user.email = 'maksym.po@room4.team'
-        create_acc_page = start_page.navigate_to_create_acc()
+        # Verify sign up with used email
         create_acc_page.verify_used_email(user)
 
     def test_sign_up_empty_field(self, start_page, sign_up_value):
