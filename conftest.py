@@ -31,10 +31,3 @@ def subscribe_fix():
     user = User()
     user.subscribe_value()
     return user
-
-
-@pytest.fixture()
-def contact_us():
-    form = User()
-    form.contact_us_value()
-    return form
