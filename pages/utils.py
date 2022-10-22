@@ -66,13 +66,10 @@ def log_decorator(original_function):
 
 
 class User:
-    def __init__(self, username="", email="", password="", message='', name="", subject=""):
+    def __init__(self, username="", email="", password=""):
         self.username = username
         self.email = email
         self.password = password
-        self.name = name
-        self.message = message
-        self.subject = subject
 
     def fill_data(self, username="", email="", password=""):
         """Fill fields with sample data"""
@@ -80,11 +77,6 @@ class User:
         self.username = f"{user}{random_num()}" if not username else username
         self.email = f"{user}{random_num()}@gmail.com" if not email else email
         self.password = f"{random_str(6)}{random_num()}" if not password else password
-
-    def sign_in_user(self):
-        """Sign in with valid data"""
-        self.username = 'usermax'
-        self.password = 'usermaxusermax'
 
     def subscribe_value(self, email="", name="", surname=""):
         """Fill fields with sample data"""
@@ -97,10 +89,3 @@ class User:
         user = random_str()
         self.email = f"{user}{random_str()}@gmail.com" if not email else email
         self.password = f"{user}{random_num()}" if not password else password
-
-    def contact_us_value(self, name="", email="", subject="", message=""):
-        user = random_str()
-        self.name = f"{user}{random_str()}" if not name else name
-        self.email = f"{user}{random_str()}@gmail.com" if not email else email
-        self.subject = f"{user}{random_str()}" if not subject else subject
-        self.message = f"{user}{random_str()}" if not message else message
