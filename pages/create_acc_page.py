@@ -1,6 +1,6 @@
 from constants.create_acc_page import CreateAccountConsts
 from pages.base_page import BasePage
-from pages.utils import wait_until_ok, log_decorator
+from pages.utils import log_decorator
 
 
 class CreateAccPage(BasePage):
@@ -14,8 +14,7 @@ class CreateAccPage(BasePage):
         """Verify create account page opened"""
         assert self.get_element_text(self.constants.VERIFY_CREATE_ACC_XPATH)
 
-
-    @wait_until_ok(period=1)
+    @log_decorator
     def sign_up_with_email(self, user):
         """Sign up with email"""
         # Select Sign up with email
@@ -63,7 +62,6 @@ class CreateAccPage(BasePage):
             f"Actual: {self.get_element_text(xpath=self.constants.PASSWORD_LESS_SYMBOL_XPATH)}"
 
     @log_decorator
-    # @wait_until_ok(period=1)
     def verify_empty_email_field(self, user):
         """Verify empty email field"""
         self.click(xpath=self.constants.SIGN_UP_WITH_EMAIL_XPATH)

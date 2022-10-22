@@ -6,5 +6,7 @@ class TestStartPage:
         - fill fields (email, name, surname)
         - verify message"""
         user = subscribe_fix
+        # Fill fields with random data
         start_page.subscribe_fill_fields(user)
+        # Verify Subscribe successfuly
         start_page.verify_subscribe()
